@@ -19,7 +19,9 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-helmet": "^5.2.0",
-    "styled-components": "^3.4.6"
+    "styled-components": "^3.4.6",
+    "typeface-aleo": "0.0.44",
+    "typeface-ubuntu": "0.0.54"
   },
   "keywords": [
     "gatsby"

@@ -16,3 +16,4 @@ collections:
       - { name: date, label: Created at, widget: date }
       - { name: body, label: Post, widget: markdown }
       - { name: image, label: Image, widget: image }
+      - { name: tags, label: Tags, widget: list, default: ['javascript'] }
