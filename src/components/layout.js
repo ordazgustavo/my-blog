@@ -1,33 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
 import Header from './header'
+import Seo from './Seo/Seo'
 import './layout.css'
 
-const Layout = ({ children, location }) => (
+const Layout = ({ children, meta, location }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
         site {
           siteMetadata {
+            lang
+            url
             title
+            description
+            authorName
+            authorTwitterAccount
+            image
           }
         }
       }
     `}
     render={data => (
       <>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' }
-          ]}
-        >
-          <html lang="es" />
-        </Helmet>
+        <Seo {...data} meta={meta || null} />
         <Header siteTitle={data.site.siteMetadata.title} location={location} />
         <main
           style={{
@@ -35,7 +33,7 @@ const Layout = ({ children, location }) => (
             maxWidth: 700,
             padding: '0px 1.0875rem 1.45rem',
             paddingTop: 0,
-            boxSizing: 'content-box'
+            boxSizing: 'content-box',
           }}
         >
           {children}
@@ -46,7 +44,7 @@ const Layout = ({ children, location }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 export default Layout

@@ -14,7 +14,7 @@ export default class Post extends Component {
       markdownRemark: { frontmatter, html, timeToRead },
     } = data
     return (
-      <Layout location={location}>
+      <Layout location={location} meta={data}>
         <small>
           {frontmatter.date} • {timeToRead} min read
         </small>
@@ -32,6 +32,10 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "DD MMMM YYYY", locale: "es-do")
+      }
+      excerpt
+      fields {
+        slug
       }
       timeToRead
     }

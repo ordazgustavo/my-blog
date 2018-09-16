@@ -1,7 +1,12 @@
 module.exports = {
   siteMetadata: {
+    lang: 'es',
+    url: 'https://blogordazgustavo.netlify.com',
     title: 'Gustavo Ordaz',
-    description: 'This is my blog'
+    description: 'This is my blog',
+    authorName: 'Gustavo Ordaz',
+    authorTwitterAccount: 'ordazsgustavo',
+    image: 'src/images/OGLogo.png',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -14,8 +19,8 @@ module.exports = {
         background_color: '#468189',
         theme_color: '#031926',
         display: 'standalone',
-        icon: 'src/images/OGLogo.png' // This path is relative to the root of the site.
-      }
+        icon: 'src/images/OGLogo.png', // This path is relative to the root of the site.
+      },
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-styled-components',
@@ -23,22 +28,22 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'src',
-        path: `${__dirname}/src/`
-      }
+        path: `${__dirname}/src/`,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'img',
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'img',
-        path: `${__dirname}/static/assets`
-      }
+        path: `${__dirname}/static/assets`,
+      },
     },
     {
       resolve: 'gatsby-transformer-remark',
@@ -50,19 +55,19 @@ module.exports = {
             options: {
               classPrefix: 'language-',
               inlineCodeMarker: null,
-              aliases: { sh: 'bash' }
-            }
-          }
-        ]
-      }
+              aliases: { sh: 'bash' },
+            },
+          },
+        ],
+      },
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`
-      }
-    }
-  ]
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
+    },
+  ],
 }

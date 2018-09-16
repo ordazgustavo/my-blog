@@ -16,12 +16,6 @@ export default IndexPage
 
 export const query = graphql`
   query SiteMeta {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
     allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "//posts//" } }
       sort: { fields: [frontmatter___date], order: DESC }
