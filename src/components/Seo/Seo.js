@@ -21,10 +21,8 @@ const Seo = ({ site, meta }) => {
 
   const title = postTitle ? `${postTitle} - ${siteTitle}` : siteTitle
   const excerpt = postExcerpt ? postExcerpt : siteDescription
-  const image = postImage ? postImage : siteImage
+  const image = postImage ? siteUrl + postImage : siteUrl + siteImage
   const url = postSlug ? siteUrl + postSlug : siteUrl
-
-  console.log(site, meta)
 
   return (
     <Helmet
@@ -45,6 +43,7 @@ const Seo = ({ site, meta }) => {
       {/* <meta property="fb:app_id" content={facebook.appId} /> */}
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary" />
+      <meta name="twitter:image" content={image} />
       <meta
         name="twitter:creator"
         content={authorTwitterAccount ? authorTwitterAccount : ''}
