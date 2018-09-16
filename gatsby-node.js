@@ -20,73 +20,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
-// exports.onCreateNode = ({ node, getNode, actions }) => {
-//   const { createNodeField } = actions
-//   if (node.internal.type === 'MarkdownRemark') {
-//     let value
-//     if (node.frontmatter.type && node.frontmatter.type === 'page') {
-//       value = createFilePath({
-//         node,
-//         getNode,
-//         // basePath: 'src/personal',
-//         trailingSlash: false,
-//       })
-//     } else {
-//       let type = createFilePath({
-//         node,
-//         getNode,
-//         basePath: 'posts',
-//       })
-//       value = `/posts${type}`
-//     }
-//     createNodeField({
-//       node,
-//       name: 'slug',
-//       value,
-//     })
-//   }
-// }
-
-// exports.createPages = ({ graphql, actions }) => {
-//   const { createPage } = actions
-//   return new Promise(resolve => {
-//     graphql(`
-//       {
-//         allMarkdownRemark {
-//           edges {
-//             node {
-//               fields {
-//                 slug
-//               }
-//             }
-//           }
-//         }
-//       }
-//     `).then(result => {
-//       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-//         let component = './src/posts/PostPage.js'
-//         if (!node.fields.slug.includes('posts')) {
-//           component = `./src${node.fields.slug}.js`
-//         }
-//         createPage({
-//           path: node.fields.slug,
-//           component: path.resolve(component),
-//           context: {
-//             slug: node.fields.slug,
-//           },
-//         })
-//       })
-//       resolve()
-//     })
-//   })
-// }
-
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve('./src/posts/PostPage.js')
-    const pageTemplate = path.resolve('./src/pages/PagesPage.js')
+    const postTemplate = path.resolve('./src/templates/Post.js')
+    const pageTemplate = path.resolve('./src/templates/Page.js')
     resolve(
       graphql(
         `

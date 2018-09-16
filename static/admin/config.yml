@@ -19,9 +19,9 @@ collections:
       - { name: author, label: autor, default: Gustavo Ordaz }
       - { name: tags, label: Tags, widget: list, default: ['javascript'] }
 
-  - name: about
-    label: About
-    folder: src/personal
+  - name: page
+    label: Pages
+    folder: src/content/pages
     create: true
     fields:
       - { name: title, label: Title }
