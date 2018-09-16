@@ -1,2 +1,4 @@
 require('typeface-ubuntu')
-require('typeface-aleo')
+require('typeface-noto-serif')
+require('typeface-roboto-mono')
+require('prismjs/themes/prism-tomorrow.css')

@@ -16,4 +16,14 @@ collections:
       - { name: date, label: Created at, widget: date }
       - { name: body, label: Post, widget: markdown }
       - { name: image, label: Image, widget: image }
+      - { name: author, label: autor, default: Gustavo Ordaz }
       - { name: tags, label: Tags, widget: list, default: ['javascript'] }
+
+  - name: about
+    label: About
+    folder: src/personal
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: body, label: Post, widget: markdown }
+      - { name: image, label: Image, widget: image }

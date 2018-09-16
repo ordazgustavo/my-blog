@@ -5,12 +5,16 @@
   --cambridge-blue: #9dbebb;
   --azureish-white: #dbe9ee;
 
-  --light-grey: #595959;
-  --dark-grey: #424242;
+  --main-bg: #f6f9fa;
+
+  --font-color: rgba(0, 0, 0, 0.8);
+  --font-regular: 'ubuntu';
+  --font-mono: 'roboto mono';
+  --font-paragraph: 'noto serif';
 }
 
 html {
-  font-family: 'Aleo', sans-serif;
+  font-family: var(--font-regular), sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -105,7 +109,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  font-family: var(--font-mono), monospace, monospace;
   font-size: 1em;
 }
 figure {
@@ -211,7 +215,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: 'Aleo', georgia, serif;
+  font-family: var(--font-regular), georgia, serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -219,6 +223,7 @@ body {
   -ms-font-feature-settings: 'kern', 'liga', 'clig', 'calt';
   -webkit-font-feature-settings: 'kern', 'liga', 'clig', 'calt';
   font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  background-color: var(--main-bg);
 }
 img {
   max-width: 100%;
@@ -241,8 +246,6 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
@@ -258,8 +261,6 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -275,8 +276,6 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -292,8 +291,6 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -309,8 +306,6 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -326,8 +321,6 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -396,6 +389,7 @@ p {
   padding-right: 0;
   padding-top: 0;
   margin-bottom: 1.45rem;
+  font-size: 21px;
 }
 figure {
   margin-left: 0;
@@ -607,7 +601,7 @@ tt,
 code {
   background-color: hsla(0, 0%, 0%, 0.04);
   border-radius: 3px;
-  font-family: 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
+  font-family: var(--font-mono), Consolas, 'Roboto Mono', 'Droid Sans Mono',
     'Liberation Mono', Menlo, Courier, monospace;
   padding: 0;
   padding-top: 0.2em;
@@ -641,11 +635,59 @@ h2,
 h3,
 h4,
 h5,
+h6 {
+  font-family: var(--font-regular), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
 h6,
 strong {
-  color: var(--dark-grey);
+  color: var(--font-color);
 }
 
 p {
-  color: var(--light-grey);
+  font-family: var(--font-paragraph);
+}
+
+p,
+small {
+  color: var(--font-color);
+}
+
+.gatsby-highlight {
+  background: var(--maastrischt-blue);
+  color: #ffffff;
+  border-radius: 10px;
+  overflow: auto;
+  tab-size: 1.5em;
+  margin: 1.45rem 0;
+  tab-size: 1.5em;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  font-family: var(--font-mono);
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  background: var(--maastrischt-blue);
+}
+
+.token.boolean,
+.token.number,
+.token.function {
+  color: var(--green-sheen);
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+  color: var(--green-sheen);
 }

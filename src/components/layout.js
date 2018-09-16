@@ -23,29 +23,30 @@ const Layout = ({ children, location }) => (
           title={data.site.siteMetadata.title}
           meta={[
             { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            { name: 'keywords', content: 'sample, something' }
           ]}
         >
-          <html lang="en" />
+          <html lang="es" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} location={location} />
-        <div
+        <main
           style={{
             margin: '0 auto',
-            maxWidth: 960,
+            maxWidth: 700,
             padding: '0px 1.0875rem 1.45rem',
             paddingTop: 0,
+            boxSizing: 'content-box'
           }}
         >
           {children}
-        </div>
+        </main>
       </>
     )}
   />
 )
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default Layout
