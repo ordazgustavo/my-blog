@@ -658,6 +658,15 @@ small {
   color: var(--font-color);
 }
 
+a {
+  color: var(--green-sheen);
+  transition: color 0.3s ease-in;
+}
+
+a:hover {
+  color: var(--teal-blue);
+}
+
 .gatsby-highlight {
   background: var(--maastrischt-blue);
   color: #ffffff;

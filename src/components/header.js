@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
-import logo from '../images/OGLogo.png'
+import logo from '../images/OGLight.png'
 
 const HeaderWrapper = styled.div`
   background: #031926;
@@ -24,6 +25,8 @@ const HeaderContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 2;
 `
 
 const MainNav = styled.nav`
@@ -34,7 +37,11 @@ const MainNav = styled.nav`
       margin-left: 10px;
       a {
         text-decoration: none;
-        color: #fff;
+        color: #77aca2;
+        transition: color 0.3s ease-in;
+        &:hover {
+          color: #468189;
+        }
       }
     }
   }
@@ -42,7 +49,7 @@ const MainNav = styled.nav`
 
 class Header extends Component {
   render() {
-    const { location } = this.props
+    const { location, image } = this.props
     return (
       <HeaderWrapper isHome={location.pathname === '/'}>
         <HeaderContainer>
@@ -60,14 +67,28 @@ class Header extends Component {
           <MainNav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Blog</Link>
               </li>
               <li>
                 <Link to="/about/">About</Link>
               </li>
+              <li>
+                <Link to="/contact/">Contact</Link>
+              </li>
             </ul>
           </MainNav>
         </HeaderContainer>
+        <Img
+          style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+            opacity: '0.3',
+          }}
+          fluid={image.fluid}
+        />
       </HeaderWrapper>
     )
   }

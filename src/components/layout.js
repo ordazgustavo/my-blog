@@ -21,12 +21,23 @@ const Layout = ({ children, meta, location }) => (
             image
           }
         }
+        background: imageSharp(
+          fluid: { originalName: { regex: "/headerbg.png/" } }
+        ) {
+          fluid(maxWidth: 1240) {
+            ...GatsbyImageSharpFluid
+          }
+        }
       }
     `}
     render={data => (
       <>
         <Seo {...data} meta={meta || null} />
-        <Header siteTitle={data.site.siteMetadata.title} location={location} />
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          location={location}
+          image={data.background}
+        />
         <main
           style={{
             margin: '0 auto',

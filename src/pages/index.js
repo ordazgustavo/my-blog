@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import PostListing from '../components/Posts/PostListing'
 
 const IndexPage = ({ data, location }) => (
-  <Layout location={location}>
+  <Layout location={location} image={data.background}>
     {data.allMarkdownRemark.edges.map(({ node }) => (
       <PostListing key={node.id} post={node} />
     ))}
