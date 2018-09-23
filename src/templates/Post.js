@@ -22,6 +22,7 @@ class PostTemplate extends Component {
       markdownRemark: { frontmatter, html, timeToRead },
     } = data
 
+    console.log(this.props)
     return (
       <Layout location={location} meta={data}>
         <article>
