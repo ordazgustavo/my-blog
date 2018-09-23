@@ -1,7 +1,9 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
+const { fmImagesToRelative } = require('gatsby-remark-relative-images-v2')
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
+  fmImagesToRelative(node)
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` })
@@ -10,12 +12,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: `${separtorIndex ? '/' : ''}${slug.substring(shortSlugStart)}`,
+      value: `${separtorIndex ? '/' : ''}${slug.substring(shortSlugStart)}`
     })
     createNodeField({
       node,
       name: `prefix`,
-      value: separtorIndex ? slug.substring(1, separtorIndex) : '',
+      value: separtorIndex ? slug.substring(1, separtorIndex) : ''
     })
   }
 }
@@ -24,8 +26,8 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve('./src/templates/Post.js')
-    const pageTemplate = path.resolve('./src/templates/Page.js')
+    const postTemplate = path.resolve('./src/templates/post.js')
+    const pageTemplate = path.resolve('./src/templates/page.js')
     resolve(
       graphql(
         `
@@ -36,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
             ) {
               edges {
                 node {
-                  id
+                  fileAbsolutePath
                   fields {
                     slug
                     prefix
@@ -54,16 +56,17 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
-
+        
         const items = result.data.allMarkdownRemark.edges
-
+        
         // Create posts
-        const posts = items.filter(item => /posts/.test(item.node.id))
+        const posts = items.filter(item => /posts/.test(item.node.fileAbsolutePath))
+        console.log('\n posts', posts)
         posts.forEach(({ node }, index) => {
           const slug = node.fields.slug
-          const next = index === 0 ? undefined : posts[index - 1].node
+          const next = index === 0 ? null : posts[index - 1].node
           const prev =
-            index === posts.length - 1 ? undefined : posts[index + 1].node
+            index === posts.length - 1 ? null : posts[index + 1].node
 
           createPage({
             path: slug,
@@ -71,13 +74,13 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug,
               prev,
-              next,
-            },
+              next
+            }
           })
         })
 
         // and pages.
-        const pages = items.filter(item => /pages/.test(item.node.id))
+        const pages = items.filter(item => /pages/.test(item.node.fileAbsolutePath))
         pages.forEach(({ node }) => {
           const slug = node.fields.slug
 
@@ -85,8 +88,8 @@ exports.createPages = ({ graphql, actions }) => {
             path: slug,
             component: pageTemplate,
             context: {
-              slug,
-            },
+              slug
+            }
           })
         })
       })

@@ -1,7 +1,7 @@
 ---
 title: Post with code
 date: 2018-09-15T05:05:09.638Z
-image: /assets/oglogo.png
+image: /assets/post-with-code.png
 ---
 
 ## Inline

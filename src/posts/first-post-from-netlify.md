@@ -1,6 +1,7 @@
 ---
 title: First post from netlify!
 date: 2018-09-12T03:53:00.915Z
+image: /assets/profile.jpg
 ---
 
 Lorem ipsum dolor amet health goth typewriter taxidermy, twee distillery seitan

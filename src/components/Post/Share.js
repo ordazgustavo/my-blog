@@ -1,4 +1,5 @@
 import React from 'react'
+import {StaticQuery, graphql} from 'gatsby'
 import PropTypes from 'prop-types'
 import {
   FacebookShareButton,
@@ -38,73 +39,82 @@ const Share = props => {
       fields: { slug },
       frontmatter: { title, image },
       excerpt
-    },
-    siteUrl
+    }
   } = props
-
-  const url = siteUrl + slug
-  const media = siteUrl + image
 
   const iconSize = 36
   const filter = count => (count > 0 ? count : '')
 
   return (
-    <Wrapper>
-      <h3>¿Te gustó el post?</h3>
-      <p>
-        Dedico mucho tiempo y esfuerzo a cada post, recursos y demos, ¡te
-        estaría muy agradecido si te tomas un momento para compatirlo!
-      </p>
-      <Icons>
-        <TwitterShareButton
-          url={url}
-          title={title}
-          additionalProps={{
-            'aria-label': 'Twitter share'
-          }}
-        >
-          <TwitterIcon round size={iconSize} />
-        </TwitterShareButton>
-        <FacebookShareButton
-          url={url}
-          quote={`${title} - ${excerpt}`}
-          additionalProps={{
-            'aria-label': 'Facebook share'
-          }}
-        >
-          <FacebookIcon round size={iconSize} />
-          <FacebookShareCount url={url}>
-            {count => <div className="share-count">{filter(count)}</div>}
-          </FacebookShareCount>
-        </FacebookShareButton>
-        <PinterestShareButton
-          url={url}
-          title={title}
-          media={media}
-          additionalProps={{
-            'aria-label': 'Pinterest share'
-          }}
-        >
-          <PinterestIcon round size={iconSize} />
-          <PinterestShareCount url={url}>
-            {count => <div className="share-count">{filter(count)}</div>}
-          </PinterestShareCount>
-        </PinterestShareButton>
-        <LinkedinShareButton
-          url={url}
-          title={title}
-          description={excerpt}
-          additionalProps={{
-            'aria-label': 'LinkedIn share'
-          }}
-        >
-          <LinkedinIcon round size={iconSize} />
-          <LinkedinShareCount url={url}>
-            {count => <div className="share-count">{filter(count)}</div>}
-          </LinkedinShareCount>
-        </LinkedinShareButton>
-      </Icons>
-    </Wrapper>
+    <StaticQuery
+      query={graphql`
+        query SiteDataQuery {
+          site {
+            siteMetadata {
+              url
+            }
+          }
+        }
+      `}
+      render={data => (
+        <Wrapper>
+          <h3>¿Te gustó el post?</h3>
+          <p>
+            Dedico mucho tiempo y esfuerzo a cada post, recursos y demos, ¡te
+            estaría muy agradecido si te tomas un momento para compatirlo!
+          </p>
+          <Icons>
+            <TwitterShareButton
+              url={data.site.siteMetadata.url + slug}
+              title={title}
+              additionalProps={{
+                'aria-label': 'Twitter share'
+              }}
+            >
+              <TwitterIcon round size={iconSize} />
+            </TwitterShareButton>
+            <FacebookShareButton
+              url={data.site.siteMetadata.url + slug}
+              quote={`${title} - ${excerpt}`}
+              additionalProps={{
+                'aria-label': 'Facebook share'
+              }}
+            >
+              <FacebookIcon round size={iconSize} />
+              <FacebookShareCount url={data.site.siteMetadata.url + slug}>
+                {count => <div className="share-count">{filter(count)}</div>}
+              </FacebookShareCount>
+            </FacebookShareButton>
+            <PinterestShareButton
+              url={data.site.siteMetadata.url + slug}
+              title={title}
+              media={data.site.siteMetadata.url + image}
+              additionalProps={{
+                'aria-label': 'Pinterest share'
+              }}
+            >
+              <PinterestIcon round size={iconSize} />
+              <PinterestShareCount url={data.site.siteMetadata.url + slug}>
+                {count => <div className="share-count">{filter(count)}</div>}
+              </PinterestShareCount>
+            </PinterestShareButton>
+            <LinkedinShareButton
+              url={data.site.siteMetadata.url + slug}
+              title={title}
+              description={excerpt}
+              additionalProps={{
+                'aria-label': 'LinkedIn share'
+              }}
+            >
+              <LinkedinIcon round size={iconSize} />
+              <LinkedinShareCount url={data.site.siteMetadata.url + slug}>
+                {count => <div className="share-count">{filter(count)}</div>}
+              </LinkedinShareCount>
+            </LinkedinShareButton>
+          </Icons>
+        </Wrapper>
+      )}
+    />
   )
 }
 

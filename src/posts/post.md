@@ -1,6 +1,7 @@
 ---
 title: 'First post'
 date: '2018-09-09'
+image: /assets/profile.jpg
 ---
 
 Lorem ipsum dolor amet mustache blog 3 wolf moon scenester pabst. Locavore

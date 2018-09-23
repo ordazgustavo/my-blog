@@ -6,8 +6,12 @@ import PostListing from '../components/Post/PostListing'
 
 const IndexPage = ({ data, location }) => (
   <Layout location={location} image={data.background}>
-    {data.allMarkdownRemark.edges.map(({ node }) => (
-      <PostListing key={node.id} post={node} />
+    {data.allMarkdownRemark.edges.map(({ node }, i) => (
+      <PostListing
+        key={node.id}
+        post={node}
+        featured={i === 0}
+      />
     ))}
   </Layout>
 )
@@ -22,16 +26,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          id
-          frontmatter {
-            title
-            date(formatString: "DD MMM, YYYY", locale: "es-do")
-          }
-          timeToRead
-          fields {
-            slug
-          }
-          excerpt
+          ...PostListingData
         }
       }
     }

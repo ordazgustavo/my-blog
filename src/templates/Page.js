@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 
-export default class Page extends Component {
+class PageTemplate extends Component {
   render() {
     const { data, location } = this.props
 
@@ -12,6 +12,7 @@ export default class Page extends Component {
     const {
       markdownRemark: { frontmatter, html },
     } = data
+
     return (
       <Layout location={location}>
         <h1>{frontmatter.title}</h1>
@@ -21,8 +22,10 @@ export default class Page extends Component {
   }
 }
 
-export const query = graphql`
-  query PageQuery($slug: String!) {
+export default PageTemplate
+
+export const pageQuery = graphql`
+  query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {

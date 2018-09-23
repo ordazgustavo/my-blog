@@ -1,4 +1,5 @@
 import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 
@@ -16,26 +17,50 @@ const Wrapper = styled.div`
   }
 `
 
-const Author = ({ name, twitter, note, image }) => (
-  <Wrapper>
-    <div>
-      <Img
-        style={{ width: '70px', borderRadius: '50%', marginRight: '15px' }}
-        fluid={image.fluid}
-      />
-    </div>
-    <div>
-      <h3>{name}</h3>
-      <div dangerouslySetInnerHTML={{ __html: note.html }} />
-      <a
-        href={`https://twitter.com/${twitter}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        @{twitter}
-      </a>
-    </div>
-  </Wrapper>
+const Author = () => (
+  <StaticQuery
+    query={graphql`
+      query AuthorDataQuery {
+        site {
+          siteMetadata {
+            authorName
+            authorTwitterAccount
+          }
+        }
+        authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {
+          html
+        }
+        profilefoto: imageSharp(
+          fluid: { originalName: { regex: "/profile-square.jpg/" } }
+        ) {
+          fluid(maxWidth: 350) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    `}
+    render={data => (
+      <Wrapper>
+        <div>
+          <Img
+            style={{ width: '70px', borderRadius: '50%', marginRight: '15px' }}
+            fluid={data.profilefoto.fluid}
+          />
+        </div>
+        <div>
+          <h3>{data.site.siteMetadata.authorName}</h3>
+          <div dangerouslySetInnerHTML={{ __html: data.authornote.html }} />
+          <a
+            href={`https://twitter.com/${data.site.siteMetadata.authorTwitterAccount}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @{data.site.siteMetadata.authorTwitterAccount}
+          </a>
+        </div>
+      </Wrapper>
+    )}
+  />
 )
 
 export default Author

@@ -42,7 +42,7 @@ const Seo = ({ site, meta }) => {
       <meta property="og:type" content="website" />
       {/* <meta property="fb:app_id" content={facebook.appId} /> */}
       {/* Twitter Card tags */}
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={image} />
       <meta
         name="twitter:creator"

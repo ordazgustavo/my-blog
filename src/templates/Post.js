@@ -7,7 +7,7 @@ import SneakPeak from '../components/Post/SneakPeak'
 import Share from '../components/Post/Share'
 import Author from '../components/Post/Author'
 
-export default class Post extends Component {
+class PostTemplate extends Component {
   render() {
     const {
       data,
@@ -20,11 +20,6 @@ export default class Post extends Component {
     const {
       markdownRemark: post,
       markdownRemark: { frontmatter, html, timeToRead },
-      site: {
-        siteMetadata: { url, authorName, authorTwitterAccount }
-      },
-      authornote,
-      profilefoto
     } = data
 
     return (
@@ -35,13 +30,8 @@ export default class Post extends Component {
           </small>
           <h1>{frontmatter.title}</h1>
           <PostBody dangerouslySetInnerHTML={{ __html: html }} />
-          <Share siteUrl={url} post={post} />
-          <Author
-            name={authorName}
-            note={authornote}
-            image={profilefoto}
-            twitter={authorTwitterAccount}
-          />
+          <Author />
+          <Share post={post} />
           <SneakPeak next={next} prev={prev} />
         </article>
       </Layout>
@@ -49,21 +39,15 @@ export default class Post extends Component {
   }
 }
 
-export const query = graphql`
-  query BlogPostQuery($slug: String!) {
-    site {
-      siteMetadata {
-        url
-        authorName
-        authorTwitterAccount
-      }
-    }
+export default PostTemplate
+
+export const pageQuery = graphql`
+  query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
         title
         date(formatString: "DD MMMM YYYY", locale: "es-do")
-        image
       }
       excerpt
       fields {
@@ -71,17 +55,6 @@ export const query = graphql`
         prefix
       }
       timeToRead
-    }
-    authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {
-      id
-      html
-    }
-    profilefoto: imageSharp(
-      fluid: { originalName: { regex: "/profile-square.jpg/" } }
-    ) {
-      fluid(maxWidth: 350) {
-        ...GatsbyImageSharpFluid
-      }
     }
   }
 `
