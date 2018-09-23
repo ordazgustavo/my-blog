@@ -1,10 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
+
+import { media } from '../utilities';
 
 import Header from './header'
 import Seo from './Seo/Seo'
 import './layout.css'
+
+const Main = styled.main`
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 0px 1.0875rem 3rem;
+  padding-top: 0px;
+  box-sizing: content-box;
+  ${media.tablet`
+    padding: 0px 1.0875rem 1.45rem;
+  `}
+`
 
 const Layout = ({ children, meta, location }) => (
   <StaticQuery
@@ -21,41 +35,22 @@ const Layout = ({ children, meta, location }) => (
             image
           }
         }
-        background: imageSharp(
-          fluid: { originalName: { regex: "/headerbg.png/" } }
-        ) {
-          fluid(maxWidth: 1240) {
-            ...GatsbyImageSharpFluid
-          }
-        }
       }
     `}
     render={data => (
       <>
         <Seo {...data} meta={meta || null} />
-        <Header
-          siteTitle={data.site.siteMetadata.title}
-          location={location}
-          image={data.background}
-        />
-        <main
-          style={{
-            margin: '0 auto',
-            maxWidth: 700,
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-            boxSizing: 'content-box',
-          }}
-        >
+        <Header siteTitle={data.site.siteMetadata.title} location={location} />
+        <Main>
           {children}
-        </main>
+        </Main>
       </>
     )}
   />
 )
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default Layout

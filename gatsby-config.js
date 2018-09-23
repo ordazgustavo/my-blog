@@ -4,8 +4,10 @@ module.exports = {
     url: 'https://blogordazgustavo.netlify.com',
     title: 'Gustavo Ordaz',
     description: 'This is my blog',
+    github: 'https://github.com/ordazgustavo/my-blog',
     authorName: 'Gustavo Ordaz',
     authorTwitterAccount: 'ordazsgustavo',
+    authorWebsite: 'https://ordazgustavo.netlify.com',
     image: 'src/images/OGLogo.png'
   },
   plugins: [
@@ -58,7 +60,7 @@ module.exports = {
         excerpt_separator: `<!-- end -->`,
         plugins: [
           {
-            resolve: `gatsby-remark-relative-images-v2`,
+            resolve: `gatsby-remark-relative-images-v2`
           },
           {
             resolve: `gatsby-remark-images`,
