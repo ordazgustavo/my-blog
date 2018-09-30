@@ -1,5 +1,5 @@
 import React from 'react'
-import {StaticQuery, graphql} from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import {
   FacebookShareButton,
@@ -51,7 +51,7 @@ const Share = props => {
         query SiteDataQuery {
           site {
             siteMetadata {
-              url
+              siteUrl
             }
           }
         }
@@ -65,7 +65,7 @@ const Share = props => {
           </p>
           <Icons>
             <TwitterShareButton
-              url={data.site.siteMetadata.url + slug}
+              url={data.site.siteMetadata.siteUrl + slug}
               title={title}
               additionalProps={{
                 'aria-label': 'Twitter share'
@@ -74,32 +74,32 @@ const Share = props => {
               <TwitterIcon round size={iconSize} />
             </TwitterShareButton>
             <FacebookShareButton
-              url={data.site.siteMetadata.url + slug}
+              url={data.site.siteMetadata.siteUrl + slug}
               quote={`${title} - ${excerpt}`}
               additionalProps={{
                 'aria-label': 'Facebook share'
               }}
             >
               <FacebookIcon round size={iconSize} />
-              <FacebookShareCount url={data.site.siteMetadata.url + slug}>
+              <FacebookShareCount url={data.site.siteMetadata.siteUrl + slug}>
                 {count => <div className="share-count">{filter(count)}</div>}
               </FacebookShareCount>
             </FacebookShareButton>
             <PinterestShareButton
-              url={data.site.siteMetadata.url + slug}
+              url={data.site.siteMetadata.siteUrl + slug}
               title={title}
-              media={data.site.siteMetadata.url + image}
+              media={data.site.siteMetadata.siteUrl + image}
               additionalProps={{
                 'aria-label': 'Pinterest share'
               }}
             >
               <PinterestIcon round size={iconSize} />
-              <PinterestShareCount url={data.site.siteMetadata.url + slug}>
+              <PinterestShareCount url={data.site.siteMetadata.siteUrl + slug}>
                 {count => <div className="share-count">{filter(count)}</div>}
               </PinterestShareCount>
             </PinterestShareButton>
             <LinkedinShareButton
-              url={data.site.siteMetadata.url + slug}
+              url={data.site.siteMetadata.siteUrl + slug}
               title={title}
               description={excerpt}
               additionalProps={{
@@ -107,7 +107,7 @@ const Share = props => {
               }}
             >
               <LinkedinIcon round size={iconSize} />
-              <LinkedinShareCount url={data.site.siteMetadata.url + slug}>
+              <LinkedinShareCount url={data.site.siteMetadata.siteUrl + slug}>
                 {count => <div className="share-count">{filter(count)}</div>}
               </LinkedinShareCount>
             </LinkedinShareButton>

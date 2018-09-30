@@ -151,7 +151,6 @@ class Header extends Component {
                 title
                 description
                 github
-                authorName
                 authorTwitterAccount
               }
             }
@@ -182,7 +181,7 @@ class Header extends Component {
                     }}
                     fluid={logo.fluid}
                   />
-                  <span>{site.siteMetadata.authorName}</span>
+                  <span>{site.siteMetadata.title}</span>
                 </Link>
               </HeaderLogo>
               <MainNav>

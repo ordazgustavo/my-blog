@@ -1,7 +1,16 @@
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = 'https://blogordazgustavo.netlify.com',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === 'production'
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+
 module.exports = {
   siteMetadata: {
     lang: 'es',
-    url: 'https://blogordazgustavo.netlify.com',
+    siteUrl,
     title: 'Blog personal de Gustavo Ordaz',
     description:
       'Suelo escribir sobre JavaScript, React y otras tecnologias web del momento 🔥',
@@ -87,6 +96,27 @@ module.exports = {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: '*' }]
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          }
+        }
       }
     }
   ]

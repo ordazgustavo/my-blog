@@ -13,7 +13,7 @@ const Seo = ({ site, meta }) => {
   const siteTitle = ((site || {}).siteMetadata || {}).title
   const siteDescription = ((site || {}).siteMetadata || {}).description
   const siteImage = ((site || {}).siteMetadata || {}).image
-  const siteUrl = ((site || {}).siteMetadata || {}).url
+  const siteUrl = ((site || {}).siteMetadata || {}).siteUrl
   const siteLang = ((site || {}).siteMetadata || {}).lang
 
   const authorTwitterAccount = ((site || {}).siteMetadata || {})
