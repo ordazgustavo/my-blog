@@ -75,6 +75,29 @@ const Nav = styled.ul`
   `};
 `
 
+const SiteTitle = styled.div`
+  height: 70%;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  h2 {
+    font-size: 2.5rem;
+    color: ${colors.greenSheen};
+  }
+  h3 {
+    color: ${colors.azureishWhite};
+  }
+  h2,
+  h3 {
+    z-index: 1;
+  }
+`
+
 const Icons = styled.ul`
   display: flex;
 `
@@ -88,7 +111,7 @@ const MobileNavigation = styled.nav`
   left: 0;
   right: 0;
   z-index: 1;
-  border-top: 1px solid ${colors.gray.calm};
+  border-top: 1px solid ${colors.gray.light};
   background: ${colors.azureishWhite};
   ${media.tablet`
     display: none;
@@ -105,12 +128,12 @@ const MobileNavLink = styled(Link)`
   }
 `
 
-const MobileNavItem = ({ linkTo, label, Icon }) => {
+const MobileNavItem = ({ linkTo, label, Icon, ...rest }) => {
   const I = styled(Icon)`
     font-size: 30px;
   `
   return (
-    <MobileNavLink to={linkTo}>
+    <MobileNavLink to={linkTo} {...rest}>
       <I /> <div>{label}</div>
     </MobileNavLink>
   )
@@ -125,6 +148,8 @@ class Header extends Component {
           query HeaderQuery {
             site {
               siteMetadata {
+                title
+                description
                 github
                 authorName
                 authorTwitterAccount
@@ -150,7 +175,7 @@ class Header extends Component {
           <HeaderWrapper isHome={location.pathname === '/'}>
             <HeaderContainer>
               <HeaderLogo>
-                <Link to="/" aria-label="Volver al inicio">
+                <Link to="/" title="Inicio" aria-label="Volver al inicio">
                   <Img
                     style={{
                       width: 80
@@ -163,13 +188,19 @@ class Header extends Component {
               <MainNav>
                 <Nav>
                   <li>
-                    <Link to="/">Blog</Link>
+                    <Link to="/" title="Inicio">
+                      Blog
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/about/">Acerca</Link>
+                    <Link to="/about/" title="Acerca">
+                      Acerca
+                    </Link>
                   </li>
                   <li>
-                    <Link to="/contact/">Contacto</Link>
+                    <Link to="/contact/" title="Contacto">
+                      Contacto
+                    </Link>
                   </li>
                 </Nav>
                 <Icons>
@@ -218,14 +249,32 @@ class Header extends Component {
                 opacity: '0.3'
               }}
               fluid={background.fluid}
+              alt=""
             />
+            {location.pathname === '/' && (
+              <SiteTitle>
+                <h2>{site.siteMetadata.title}</h2>
+                <h3>{site.siteMetadata.description}</h3>
+              </SiteTitle>
+            )}
             <MobileNavigation>
-              <MobileNavItem linkTo="/" label="Blog" Icon={FiBook} />
-              <MobileNavItem linkTo="/about/" label="Acerca" Icon={FiCode} />
+              <MobileNavItem
+                linkTo="/about/"
+                label="Acerca"
+                Icon={FiCode}
+                title="Acerca"
+              />
+              <MobileNavItem
+                linkTo="/"
+                label="Blog"
+                Icon={FiBook}
+                title="Inicio"
+              />
               <MobileNavItem
                 linkTo="/contact/"
                 label="Contacto"
                 Icon={FiSmartphone}
+                title="Contacto"
               />
             </MobileNavigation>
           </HeaderWrapper>

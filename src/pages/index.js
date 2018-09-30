@@ -10,6 +10,7 @@ const IndexPage = ({ data, location }) => (
       <PostListing
         key={node.id}
         post={node}
+        author={data.site.siteMetadata}
         featured={i === 0}
       />
     ))}
@@ -20,6 +21,11 @@ export default IndexPage
 
 export const query = graphql`
   query SiteMeta {
+    site {
+      siteMetadata {
+        authorName
+      }
+    }
     allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "//posts//" } }
       sort: { fields: [frontmatter___date], order: DESC }

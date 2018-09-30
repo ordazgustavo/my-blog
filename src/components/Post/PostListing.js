@@ -3,33 +3,32 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Card, { CardBody, CardImage } from '../Card'
 
-const PostListing = ({ post, featured }) => {
-  return (
-    <Link to={post.fields.slug}>
-      <Card>
-        {featured ? (
-          <CardImage>
-            <Img
-              style={{
-                position: 'absolute',
-                width: '100%',
-                height: '100%'
-              }}
-              fluid={post.frontmatter.image.childImageSharp.fluid}
-            />
-          </CardImage>
-        ) : null}
-        <CardBody>
-          <small>
-            {post.frontmatter.date} • {post.timeToRead} min read
-          </small>
-          <h3>{post.frontmatter.title}</h3>
-          <p>{post.excerpt}</p>
-        </CardBody>
-      </Card>
-    </Link>
-  )
-}
+const PostListing = ({ post, author, featured }) => (
+  <Link to={post.fields.slug} title={post.frontmatter.title}>
+    <Card>
+      {featured ? (
+        <CardImage>
+          <Img
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%'
+            }}
+            fluid={post.frontmatter.image.childImageSharp.fluid}
+          />
+        </CardImage>
+      ) : null}
+      <CardBody>
+        <small>
+          {post.frontmatter.date} • {post.timeToRead} min read •{' '}
+          {author.authorName}
+        </small>
+        <h3>{post.frontmatter.title}</h3>
+        <p>{post.excerpt}</p>
+      </CardBody>
+    </Card>
+  </Link>
+)
 
 export default PostListing
 

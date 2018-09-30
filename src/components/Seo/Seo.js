@@ -28,7 +28,7 @@ const Seo = ({ site, meta }) => {
     <Helmet
       htmlAttributes={{
         lang: siteLang || 'es',
-        prefix: 'og: http://ogp.me/ns#',
+        prefix: 'og: http://ogp.me/ns#'
       }}
     >
       {/* General tags */}
@@ -37,23 +37,30 @@ const Seo = ({ site, meta }) => {
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
+      <meta property="og:site_name" content={siteTitle} />
       <meta property="og:description" content={excerpt} />
       <meta property="og:image" content={image} />
       <meta property="og:type" content="website" />
       {/* <meta property="fb:app_id" content={facebook.appId} /> */}
       {/* Twitter Card tags */}
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={excerpt} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={image} />
       <meta
+        name="twitter:site"
+        content={authorTwitterAccount ? `@${authorTwitterAccount}` : ''}
+      />
+      <meta
         name="twitter:creator"
-        content={authorTwitterAccount ? authorTwitterAccount : ''}
+        content={authorTwitterAccount ? `@${authorTwitterAccount}` : ''}
       />
     </Helmet>
   )
 }
 
 Seo.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.object
 }
 
 export default Seo

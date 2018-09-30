@@ -53,14 +53,15 @@ exports.createPages = ({ graphql, actions }) => {
         `
       ).then(result => {
         if (result.errors) {
-          console.log(result.errors)
           reject(result.errors)
         }
-        
+
         const items = result.data.allMarkdownRemark.edges
-        
+
         // Create posts
-        const posts = items.filter(item => /posts/.test(item.node.fileAbsolutePath))
+        const posts = items.filter(item =>
+          /posts/.test(item.node.fileAbsolutePath)
+        )
         posts.forEach(({ node }, index) => {
           const slug = node.fields.slug
           const next = index === 0 ? null : posts[index - 1].node
@@ -79,7 +80,9 @@ exports.createPages = ({ graphql, actions }) => {
         })
 
         // and pages.
-        const pages = items.filter(item => /pages/.test(item.node.fileAbsolutePath))
+        const pages = items.filter(item =>
+          /pages/.test(item.node.fileAbsolutePath)
+        )
         pages.forEach(({ node }) => {
           const slug = node.fields.slug
 

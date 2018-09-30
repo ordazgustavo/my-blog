@@ -2,8 +2,9 @@ module.exports = {
   siteMetadata: {
     lang: 'es',
     url: 'https://blogordazgustavo.netlify.com',
-    title: 'Gustavo Ordaz',
-    description: 'This is my blog',
+    title: 'Blog personal de Gustavo Ordaz',
+    description:
+      'Suelo escribir sobre JavaScript, React y otras tecnologias web del momento 🔥',
     github: 'https://github.com/ordazgustavo/my-blog',
     authorName: 'Gustavo Ordaz',
     authorTwitterAccount: 'ordazsgustavo',

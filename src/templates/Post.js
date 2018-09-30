@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
+import Loadable from 'react-loadable'
 
 import Layout from '../components/layout'
 import PostBody from '../components/Post/PostBody'
 import SneakPeak from '../components/Post/SneakPeak'
-import Share from '../components/Post/Share'
 import Author from '../components/Post/Author'
+import Card, { CardBody } from '../components/Card'
+
+const AsyncShare = Loadable({
+  loader: () => import('../components/Post/Share'),
+  loading() {
+    return <div>Loading...</div>
+  }
+})
 
 class PostTemplate extends Component {
   render() {
@@ -19,10 +27,9 @@ class PostTemplate extends Component {
 
     const {
       markdownRemark: post,
-      markdownRemark: { frontmatter, html, timeToRead },
+      markdownRemark: { frontmatter, html, timeToRead }
     } = data
 
-    console.log(this.props)
     return (
       <Layout location={location} meta={data}>
         <article>
@@ -30,9 +37,13 @@ class PostTemplate extends Component {
             {frontmatter.date} • {timeToRead} min read
           </small>
           <h1>{frontmatter.title}</h1>
-          <PostBody dangerouslySetInnerHTML={{ __html: html }} />
+          <Card>
+            <CardBody>
+              <PostBody dangerouslySetInnerHTML={{ __html: html }} />
+            </CardBody>
+          </Card>
           <Author />
-          <Share post={post} />
+          <AsyncShare post={post} />
           <SneakPeak next={next} prev={prev} />
         </article>
       </Layout>
