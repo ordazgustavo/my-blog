@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import PostListing from '../components/Post/PostListing'
 
-console.log(process.env.NODE_ENV)
 const IndexPage = ({ data, location }) => (
   <Layout location={location} image={data.background}>
     {data.allMarkdownRemark.edges.map(({ node }, i) => (

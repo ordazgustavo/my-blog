@@ -1,6 +1,6 @@
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://blogordazgustavo.netlify.com',
+  URL: NETLIFY_SITE_URL = 'https://blog.ordazgustavo.com',
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV
 } = process.env
@@ -17,7 +17,7 @@ module.exports = {
     github: 'https://github.com/ordazgustavo/my-blog',
     authorName: 'Gustavo Ordaz',
     authorTwitterAccount: 'ordazsgustavo',
-    authorWebsite: 'https://ordazgustavo.netlify.com',
+    authorWebsite: 'https://www.ordazgustavo.com',
     image: 'src/images/OGLogo.png'
   },
   plugins: [
@@ -117,6 +117,29 @@ module.exports = {
             host: null
           }
         }
+      }
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        exclude: ['/admin/*'],
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+   
+            allSitePage {
+              edges {
+                node {
+                  path
+                }
+              }
+            }
+        }`
       }
     }
   ]
