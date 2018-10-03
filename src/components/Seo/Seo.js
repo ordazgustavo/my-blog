@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 const Seo = ({ site, meta }) => {
+  console.log(meta)
   const postTitle = (((meta || {}).markdownRemark || {}).frontmatter || {})
     .title
   const postExcerpt = ((meta || {}).markdownRemark || {}).excerpt
-  const postImage = (((meta || {}).markdownRemark || {}).frontmatter || {})
-    .image
+  const postImage = (
+    (((meta || {}).markdownRemark || {}).frontmatter || {}).image || {}
+  ).publicURL
   const postSlug = (((meta || {}).markdownRemark || {}).fields || {}).slug
 
   const siteTitle = ((site || {}).siteMetadata || {}).title

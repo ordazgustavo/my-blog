@@ -59,6 +59,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "DD MMMM YYYY", locale: "es-do")
+        image {
+          publicURL
+        }
       }
       excerpt
       fields {
