@@ -606,6 +606,7 @@ code {
   padding-top: 0.2em;
   padding-bottom: 0.2em;
 }
+
 pre code {
   background: none;
   line-height: 1.42;
@@ -693,5 +694,11 @@ pre[class*='language-'] {
 .token.atrule,
 .token.keyword,
 .token.builtin {
+  color: var(--green-sheen);
+}
+
+:not(pre) > code[class*='language-'] {
+  padding: 0.2em 0;
+  white-space: pre;
   color: var(--green-sheen);
 }

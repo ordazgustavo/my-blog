@@ -64,8 +64,9 @@ Instalación:
 npm install --save-dev prettier husky lint-staged
 ```
 
-**Pro tip!**: Puedes usar `npm i` en lugar de `npm install` **Pro tip!**:
-Puedes usar `-D` en lugar de `--save-dev`
+**Pro tip!**: Puedes usar `npm i` en lugar de `npm install`
+
+**Pro tip!**: Puedes usar `-D` en lugar de `--save-dev`
 
 ```bash
 npm i -D prettier husky lint-staged

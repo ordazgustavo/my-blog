@@ -3,10 +3,9 @@ import { graphql } from 'gatsby'
 import Loadable from 'react-loadable'
 
 import Layout from '../components/layout'
-import PostBody from '../components/Post/PostBody'
 import SneakPeak from '../components/Post/SneakPeak'
 import Author from '../components/Post/Author'
-import Card, { CardBody } from '../components/Card'
+import Card, { CardBodyPost } from '../components/Card'
 
 const AsyncShare = Loadable({
   loader: () => import('../components/Post/Share'),
@@ -38,9 +37,9 @@ class PostTemplate extends Component {
           </small>
           <h1>{frontmatter.title}</h1>
           <Card>
-            <CardBody>
-              <PostBody dangerouslySetInnerHTML={{ __html: html }} />
-            </CardBody>
+            {/* <CardBody> */}
+            <CardBodyPost dangerouslySetInnerHTML={{ __html: html }} />
+            {/* </CardBody> */}
           </Card>
           <Author />
           <AsyncShare post={post} />

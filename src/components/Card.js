@@ -33,5 +33,22 @@ export const CardBody = styled.div`
     line-height: 1.2em;
   }
 `
+export const CardBodyPost = styled.div`
+  padding: 30px;
+  color: ${colors.black};
+  p,
+  li {
+    line-height: 1.8em;
+    font-size: 21px;
+    /* font-family: 'noto serif', serif; */
+  }
+  blockquote {
+    border-left: 4px solid ${colors.gray.light};
+    padding-left: 1.45rem;
+  }
+  blockquote > p {
+    color: ${colors.gray.bright};
+  }
+`
 
 export default Card
