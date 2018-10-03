@@ -6,6 +6,10 @@ backend:
 media_folder: static/assets
 public_folder: /assets
 
+slug:
+  encoding: 'ascii'
+  clean_accents: true
+
 collections:
   - name: post
     label: Posts
