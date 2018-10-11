@@ -151,6 +151,7 @@ class Header extends Component {
                 title
                 description
                 github
+                authorWebsite
                 authorTwitterAccount
               }
             }
