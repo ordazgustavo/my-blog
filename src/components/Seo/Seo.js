@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 const Seo = ({ site, meta }) => {
-  console.log(meta)
   const postTitle = (((meta || {}).markdownRemark || {}).frontmatter || {})
     .title
   const postExcerpt = ((meta || {}).markdownRemark || {}).excerpt

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { elevation, transition, colors } from '../utilities'
+import { elevation, transition, colors, media } from '../utilities'
 
 const Card = styled.div`
   background: white;
@@ -36,12 +36,19 @@ export const CardBody = styled.div`
 export const CardBodyPost = styled.div`
   padding: 30px;
   color: ${colors.black};
-  p,
-  li {
-    line-height: 1.8em;
-    font-size: 21px;
-    /* font-family: 'noto serif', serif; */
-  }
+  ${media.phone`
+    p,
+    li {
+      line-height: 1.8em;
+      font-size: 16px;
+    }
+  `} ${media.tablet`
+    p,
+    li {
+      line-height: 1.8em;
+      font-size: 18px;
+    }
+  `}
   blockquote {
     border-left: 4px solid ${colors.gray.light};
     padding-left: 1.45rem;
