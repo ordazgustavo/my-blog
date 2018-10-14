@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import Loadable from 'react-loadable'
 
-import Layout from '../components/layout'
+import Seo from '../components/Seo/Seo'
 import SneakPeak from '../components/Post/SneakPeak'
 import Author from '../components/Post/Author'
 import Card, { CardBodyPost } from '../components/Card'
@@ -18,7 +18,6 @@ class PostTemplate extends Component {
   render() {
     const {
       data,
-      location,
       pageContext: { next, prev }
     } = this.props
 
@@ -30,7 +29,8 @@ class PostTemplate extends Component {
     } = data
 
     return (
-      <Layout location={location} meta={data}>
+      <>
+        <Seo site={data.site} meta={data} />
         <article>
           <small>
             {frontmatter.date} • {timeToRead} min read
@@ -45,7 +45,7 @@ class PostTemplate extends Component {
           <AsyncShare post={post} />
           <SneakPeak next={next} prev={prev} />
         </article>
-      </Layout>
+      </>
     )
   }
 }
@@ -54,6 +54,12 @@ export default PostTemplate
 
 export const pageQuery = graphql`
   query($slug: String!) {
+    site {
+      siteMetadata {
+        title
+        siteUrl
+      }
+    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       frontmatter {
