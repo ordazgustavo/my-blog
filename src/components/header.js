@@ -1,17 +1,21 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import { Spring, animated } from 'react-spring'
 import { GoMarkGithub } from 'react-icons/go'
 import { FaTwitter } from 'react-icons/fa'
 import { FiBook, FiSmartphone, FiCode } from 'react-icons/fi'
 
 import { media, colors } from '../utilities'
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled(animated.div).attrs({
+  style: ({ height }) => ({
+    height: height.interpolate(h => h)
+  })
+})`
   background: ${colors.maastrichtBlue};
   margin-bottom: 1.45rem;
-  height: ${({ isHome }) => (isHome ? '70vh' : '20vh')};
   overflow: hidden;
   position: relative;
 `
@@ -75,7 +79,11 @@ const Nav = styled.ul`
   `};
 `
 
-const SiteTitle = styled.div`
+const SiteTitle = styled(animated.div).attrs({
+  style: ({ opacity }) => ({
+    opacity: opacity.interpolate(o => o)
+  })
+})`
   height: 70%;
   width: 90%;
   max-width: 700px;
@@ -128,8 +136,8 @@ const MobileNavLink = styled(Link)`
   }
 `
 
-const MobileNavItem = ({ linkTo, label, Icon, ...rest }) => {
-  const I = styled(Icon)`
+const MobileNavItem = ({ linkTo, label, icon, ...rest }) => {
+  const I = styled(icon)`
     font-size: 30px;
   `
   return (
@@ -139,9 +147,31 @@ const MobileNavItem = ({ linkTo, label, Icon, ...rest }) => {
   )
 }
 
-class Header extends Component {
+class Header extends PureComponent {
+  state = {
+    shouldAnimate: true
+  }
+
+  componentDidUpdate(prevProps) {
+    const { location } = this.props
+    if (prevProps.location.pathname !== location.pathname) {
+      if (location.pathname === '/') {
+        this.setState({
+          shouldAnimate: true
+        })
+      } else {
+        this.setState({
+          shouldAnimate: false
+        })
+      }
+    }
+  }
+
   render() {
     const { location } = this.props
+    const { shouldAnimate } = this.state
+    const isHome = location.pathname === '/'
+
     return (
       <StaticQuery
         query={graphql`
@@ -171,115 +201,124 @@ class Header extends Component {
             }
           }
         `}
-        render={({ site, logo, background }) => (
-          <HeaderWrapper isHome={location.pathname === '/'}>
-            <HeaderContainer>
-              <HeaderLogo>
-                <Link to="/" title="Inicio" aria-label="Volver al inicio">
-                  <Img
-                    style={{
-                      width: 80
-                    }}
-                    fluid={logo.fluid}
+      >
+        {({ site, logo, background }) => (
+          <Spring
+            native
+            from={{ height: '20vh', opacity: 0 }}
+            to={{ height: '70vh', opacity: 1 }}
+            reverse={!isHome}
+            reset={shouldAnimate}
+          >
+            {({ height, opacity }) => (
+              <HeaderWrapper height={height}>
+                <HeaderContainer>
+                  <HeaderLogo>
+                    <Link to="/" title="Inicio" aria-label="Volver al inicio">
+                      <Img
+                        style={{
+                          width: 80
+                        }}
+                        fluid={logo.fluid}
+                      />
+                      <span>{site.siteMetadata.title}</span>
+                    </Link>
+                  </HeaderLogo>
+                  <MainNav>
+                    <Nav>
+                      <li>
+                        <Link to="/" title="Inicio">
+                          Blog
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/about/" title="Acerca">
+                          Acerca
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to="/contact/" title="Contacto">
+                          Contacto
+                        </Link>
+                      </li>
+                    </Nav>
+                    <Icons>
+                      <li>
+                        <a
+                          href={site.siteMetadata.github}
+                          title="GitHub"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <GoMarkGithub />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href={`https://twitter.com/${
+                            site.siteMetadata.authorTwitterAccount
+                          }`}
+                          title={`@${site.siteMetadata.authorTwitterAccount}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaTwitter />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href={site.siteMetadata.authorWebsite}
+                          title="Mi página"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          .com
+                        </a>
+                      </li>
+                    </Icons>
+                  </MainNav>
+                </HeaderContainer>
+                <Img
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    width: '100%',
+                    height: '100%',
+                    opacity: '0.3'
+                  }}
+                  fluid={background.fluid}
+                  alt=""
+                />
+                <SiteTitle opacity={opacity}>
+                  <h2>{site.siteMetadata.title}</h2>
+                  <h3>{site.siteMetadata.description}</h3>
+                </SiteTitle>
+                <MobileNavigation>
+                  <MobileNavItem
+                    linkTo="/about/"
+                    label="Acerca"
+                    icon={FiCode}
+                    title="Acerca"
                   />
-                  <span>{site.siteMetadata.title}</span>
-                </Link>
-              </HeaderLogo>
-              <MainNav>
-                <Nav>
-                  <li>
-                    <Link to="/" title="Inicio">
-                      Blog
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/about/" title="Acerca">
-                      Acerca
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/contact/" title="Contacto">
-                      Contacto
-                    </Link>
-                  </li>
-                </Nav>
-                <Icons>
-                  <li>
-                    <a
-                      href={site.siteMetadata.github}
-                      title="GitHub"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <GoMarkGithub />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`https://twitter.com/${
-                        site.siteMetadata.authorTwitterAccount
-                      }`}
-                      title={`@${site.siteMetadata.authorTwitterAccount}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaTwitter />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={site.siteMetadata.authorWebsite}
-                      title="Mi página"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      .com
-                    </a>
-                  </li>
-                </Icons>
-              </MainNav>
-            </HeaderContainer>
-            <Img
-              style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: '100%',
-                height: '100%',
-                opacity: '0.3'
-              }}
-              fluid={background.fluid}
-              alt=""
-            />
-            {location.pathname === '/' && (
-              <SiteTitle>
-                <h2>{site.siteMetadata.title}</h2>
-                <h3>{site.siteMetadata.description}</h3>
-              </SiteTitle>
+                  <MobileNavItem
+                    linkTo="/"
+                    label="Blog"
+                    icon={FiBook}
+                    title="Inicio"
+                  />
+                  <MobileNavItem
+                    linkTo="/contact/"
+                    label="Contacto"
+                    icon={FiSmartphone}
+                    title="Contacto"
+                  />
+                </MobileNavigation>
+              </HeaderWrapper>
             )}
-            <MobileNavigation>
-              <MobileNavItem
-                linkTo="/about/"
-                label="Acerca"
-                Icon={FiCode}
-                title="Acerca"
-              />
-              <MobileNavItem
-                linkTo="/"
-                label="Blog"
-                Icon={FiBook}
-                title="Inicio"
-              />
-              <MobileNavItem
-                linkTo="/contact/"
-                label="Contacto"
-                Icon={FiSmartphone}
-                title="Contacto"
-              />
-            </MobileNavigation>
-          </HeaderWrapper>
+          </Spring>
         )}
-      />
+      </StaticQuery>
     )
   }
 }

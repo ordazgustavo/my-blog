@@ -1,21 +1,17 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
 import PostListing from '../components/Post/PostListing'
 
-const IndexPage = ({ data, location }) => (
-  <Layout location={location} image={data.background}>
-    {data.allMarkdownRemark.edges.map(({ node }, i) => (
-      <PostListing
-        key={node.id}
-        post={node}
-        author={data.site.siteMetadata}
-        featured={i === 0}
-      />
-    ))}
-  </Layout>
-)
+const IndexPage = ({ data }) =>
+  data.allMarkdownRemark.edges.map(({ node }, i) => (
+    <PostListing
+      key={node.id}
+      post={node}
+      author={data.site.siteMetadata}
+      featured={i === 0}
+    />
+  ))
 
 export default IndexPage
 

@@ -7,7 +7,6 @@ import { media } from '../utilities'
 
 import Header from './header'
 import Seo from './Seo/Seo'
-import './layout.css'
 
 const Main = styled.main`
   margin: 0 auto;
@@ -37,14 +36,15 @@ const Layout = ({ children, meta, location }) => (
         }
       }
     `}
-    render={data => (
+  >
+    {data => (
       <>
         <Seo {...data} meta={meta || null} />
         <Header siteTitle={data.site.siteMetadata.title} location={location} />
         <Main>{children}</Main>
       </>
     )}
-  />
+  </StaticQuery>
 )
 
 Layout.propTypes = {

@@ -34,6 +34,12 @@ module.exports = {
         icon: 'src/images/OGLogo.png' // This path is relative to the root of the site.
       }
     },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout.js`)
+      }
+    },
     'gatsby-plugin-offline',
     {
       resolve: `gatsby-plugin-google-analytics`,
