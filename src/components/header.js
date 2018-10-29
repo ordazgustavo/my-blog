@@ -11,8 +11,8 @@ import { media, colors } from '../utilities'
 
 const HeaderWrapper = styled(animated.div).attrs({
   style: ({ height }) => ({
-    height: height.interpolate(h => h)
-  })
+    height: height.interpolate(h => h),
+  }),
 })`
   background: ${colors.maastrichtBlue};
   margin-bottom: 1.45rem;
@@ -81,8 +81,8 @@ const Nav = styled.ul`
 
 const SiteTitle = styled(animated.div).attrs({
   style: ({ opacity }) => ({
-    opacity: opacity.interpolate(o => o)
-  })
+    opacity: opacity.interpolate(o => o),
+  }),
 })`
   height: 70%;
   width: 90%;
@@ -149,7 +149,7 @@ const MobileNavItem = ({ linkTo, label, icon, ...rest }) => {
 
 class Header extends PureComponent {
   state = {
-    shouldAnimate: true
+    shouldAnimate: true,
   }
 
   componentDidUpdate(prevProps) {
@@ -157,11 +157,11 @@ class Header extends PureComponent {
     if (prevProps.location.pathname !== location.pathname) {
       if (location.pathname === '/') {
         this.setState({
-          shouldAnimate: true
+          shouldAnimate: true,
         })
       } else {
         this.setState({
-          shouldAnimate: false
+          shouldAnimate: false,
         })
       }
     }
@@ -217,7 +217,7 @@ class Header extends PureComponent {
                     <Link to="/" title="Inicio" aria-label="Volver al inicio">
                       <Img
                         style={{
-                          width: 80
+                          width: 80,
                         }}
                         fluid={logo.fluid}
                       />
@@ -285,7 +285,7 @@ class Header extends PureComponent {
                     top: 0,
                     width: '100%',
                     height: '100%',
-                    opacity: '0.3'
+                    opacity: '0.3',
                   }}
                   fluid={background.fluid}
                   alt=""

@@ -29,7 +29,7 @@ const Seo = ({ site, meta }) => {
     <Helmet
       htmlAttributes={{
         lang: siteLang || 'es',
-        prefix: 'og: http://ogp.me/ns#'
+        prefix: 'og: http://ogp.me/ns#',
       }}
     >
       {/* General tags */}
@@ -61,7 +61,7 @@ const Seo = ({ site, meta }) => {
 }
 
 Seo.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
 }
 
 export default Seo

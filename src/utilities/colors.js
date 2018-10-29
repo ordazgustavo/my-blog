@@ -10,7 +10,7 @@ const colors = {
     border: `#ede7f3`,
     bright: `#e0d6eb`,
     light: `#f5f3f7`,
-    whisper: `#fbfafc`
+    whisper: `#fbfafc`,
   },
   gray: {
     dark: gray(8, 270),
@@ -18,7 +18,7 @@ const colors = {
     calm: gray(46, 270),
     bright: gray(64, 270),
     light: gray(80, 270),
-  }
+  },
 }
 
 export default colors

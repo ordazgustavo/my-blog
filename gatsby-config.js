@@ -2,7 +2,7 @@ const {
   NODE_ENV,
   URL: NETLIFY_SITE_URL = 'https://blog.ordazgustavo.com',
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
 } = process.env
 const isNetlifyProduction = NETLIFY_ENV === 'production'
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
@@ -18,7 +18,7 @@ module.exports = {
     authorName: 'Gustavo Ordaz',
     authorTwitterAccount: 'ordazsgustavo',
     authorWebsite: 'https://www.ordazgustavo.com',
-    image: 'src/images/OGLogo.png'
+    image: 'src/images/OGLogo.png',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -31,51 +31,51 @@ module.exports = {
         background_color: '#468189',
         theme_color: '#031926',
         display: 'standalone',
-        icon: 'src/images/OGLogo.png' // This path is relative to the root of the site.
-      }
+        icon: 'src/images/OGLogo.png', // This path is relative to the root of the site.
+      },
     },
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/components/layout.js`)
-      }
+        component: require.resolve(`./src/components/layout.js`),
+      },
     },
     'gatsby-plugin-offline',
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GOOGLE_ANALYTICS_ID,
-        head: true
-      }
+        head: true,
+      },
     },
     'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'img',
-        path: `${__dirname}/static/assets`
-      }
+        path: `${__dirname}/static/assets`,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'src',
-        path: `${__dirname}/src/`
-      }
+        path: `${__dirname}/src/`,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'img',
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'posts',
-        path: `${__dirname}/src/posts`
-      }
+        path: `${__dirname}/src/posts`,
+      },
     },
     {
       resolve: 'gatsby-transformer-remark',
@@ -83,33 +83,33 @@ module.exports = {
         excerpt_separator: `<!-- end -->`,
         plugins: [
           {
-            resolve: `gatsby-remark-relative-images-v2`
+            resolve: `gatsby-remark-relative-images-v2`,
           },
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 700
-            }
+              maxWidth: 700,
+            },
           },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
               classPrefix: 'language-',
               inlineCodeMarker: null,
-              aliases: { sh: 'bash' }
-            }
+              aliases: { sh: 'bash' },
+            },
           },
-          `gatsby-remark-copy-linked-files`
-        ]
-      }
+          `gatsby-remark-copy-linked-files`,
+        ],
+      },
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`
-      }
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
     },
     {
       resolve: 'gatsby-plugin-robots-txt',
@@ -117,20 +117,20 @@ module.exports = {
         resolveEnv: () => NETLIFY_ENV,
         env: {
           production: {
-            policy: [{ userAgent: '*' }]
+            policy: [{ userAgent: '*' }],
           },
           'branch-deploy': {
             policy: [{ userAgent: '*', disallow: ['/'] }],
             sitemap: null,
-            host: null
+            host: null,
           },
           'deploy-preview': {
             policy: [{ userAgent: '*', disallow: ['/'] }],
             sitemap: null,
-            host: null
-          }
-        }
-      }
+            host: null,
+          },
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-sitemap`,
@@ -152,8 +152,8 @@ module.exports = {
                 }
               }
             }
-        }`
-      }
-    }
-  ]
+        }`,
+      },
+    },
+  ],
 }

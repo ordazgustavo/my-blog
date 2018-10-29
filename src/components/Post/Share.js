@@ -12,7 +12,7 @@ import {
   FacebookIcon,
   TwitterIcon,
   LinkedinIcon,
-  PinterestIcon
+  PinterestIcon,
 } from 'react-share'
 import styled from 'styled-components'
 
@@ -38,8 +38,8 @@ const Share = props => {
     post: {
       fields: { slug },
       frontmatter: { title, image },
-      excerpt
-    }
+      excerpt,
+    },
   } = props
 
   const iconSize = 36
@@ -68,7 +68,7 @@ const Share = props => {
               url={data.site.siteMetadata.siteUrl + slug}
               title={title}
               additionalProps={{
-                'aria-label': 'Twitter share'
+                'aria-label': 'Twitter share',
               }}
             >
               <TwitterIcon round size={iconSize} />
@@ -77,7 +77,7 @@ const Share = props => {
               url={data.site.siteMetadata.siteUrl + slug}
               quote={`${title} - ${excerpt}`}
               additionalProps={{
-                'aria-label': 'Facebook share'
+                'aria-label': 'Facebook share',
               }}
             >
               <FacebookIcon round size={iconSize} />
@@ -90,7 +90,7 @@ const Share = props => {
               title={title}
               media={data.site.siteMetadata.siteUrl + image}
               additionalProps={{
-                'aria-label': 'Pinterest share'
+                'aria-label': 'Pinterest share',
               }}
             >
               <PinterestIcon round size={iconSize} />
@@ -103,7 +103,7 @@ const Share = props => {
               title={title}
               description={excerpt}
               additionalProps={{
-                'aria-label': 'LinkedIn share'
+                'aria-label': 'LinkedIn share',
               }}
             >
               <LinkedinIcon round size={iconSize} />
@@ -119,7 +119,7 @@ const Share = props => {
 }
 
 Share.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 }
 
 export default Share

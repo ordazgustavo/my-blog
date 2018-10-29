@@ -11,21 +11,21 @@ const AsyncShare = Loadable({
   loader: () => import('../components/Post/Share'),
   loading() {
     return <div>Loading...</div>
-  }
+  },
 })
 
 class PostTemplate extends Component {
   render() {
     const {
       data,
-      pageContext: { next, prev }
+      pageContext: { next, prev },
     } = this.props
 
     if (!data) return null
 
     const {
       markdownRemark: post,
-      markdownRemark: { frontmatter, html, timeToRead }
+      markdownRemark: { frontmatter, html, timeToRead },
     } = data
 
     return (

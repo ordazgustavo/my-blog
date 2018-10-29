@@ -51,7 +51,9 @@ const Author = () => (
           <h3>{data.site.siteMetadata.authorName}</h3>
           <div dangerouslySetInnerHTML={{ __html: data.authornote.html }} />
           <a
-            href={`https://twitter.com/${data.site.siteMetadata.authorTwitterAccount}`}
+            href={`https://twitter.com/${
+              data.site.siteMetadata.authorTwitterAccount
+            }`}
             target="_blank"
             rel="noopener noreferrer"
           >

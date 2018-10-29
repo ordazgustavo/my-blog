@@ -8,7 +8,7 @@ class PageTemplate extends Component {
     if (!data) return null
 
     const {
-      markdownRemark: { frontmatter, html }
+      markdownRemark: { frontmatter, html },
     } = data
 
     return (

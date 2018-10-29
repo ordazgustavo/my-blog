@@ -12,12 +12,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: `${separtorIndex ? '/' : ''}${slug.substring(shortSlugStart)}`
+      value: `${separtorIndex ? '/' : ''}${slug.substring(shortSlugStart)}`,
     })
     createNodeField({
       node,
       name: `prefix`,
-      value: separtorIndex ? slug.substring(1, separtorIndex) : ''
+      value: separtorIndex ? slug.substring(1, separtorIndex) : '',
     })
   }
 }
@@ -50,7 +50,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        `
+        `,
       ).then(result => {
         if (result.errors) {
           reject(result.errors)
@@ -60,13 +60,12 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create posts
         const posts = items.filter(item =>
-          /posts/.test(item.node.fileAbsolutePath)
+          /posts/.test(item.node.fileAbsolutePath),
         )
         posts.forEach(({ node }, index) => {
           const slug = node.fields.slug
           const next = index === 0 ? null : posts[index - 1].node
-          const prev =
-            index === posts.length - 1 ? null : posts[index + 1].node
+          const prev = index === posts.length - 1 ? null : posts[index + 1].node
 
           createPage({
             path: slug,
@@ -74,14 +73,14 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug,
               prev,
-              next
-            }
+              next,
+            },
           })
         })
 
         // and pages.
         const pages = items.filter(item =>
-          /pages/.test(item.node.fileAbsolutePath)
+          /pages/.test(item.node.fileAbsolutePath),
         )
         pages.forEach(({ node }) => {
           const slug = node.fields.slug
@@ -90,11 +89,11 @@ exports.createPages = ({ graphql, actions }) => {
             path: slug,
             component: pageTemplate,
             context: {
-              slug
-            }
+              slug,
+            },
           })
         })
-      })
+      }),
     )
   })
 }

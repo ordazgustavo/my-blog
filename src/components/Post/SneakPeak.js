@@ -60,7 +60,7 @@ const SneakPeak = ({ next, prev }) => {
 
 SneakPeak.propTypes = {
   next: PropTypes.object,
-  prev: PropTypes.object
+  prev: PropTypes.object,
 }
 
 export default SneakPeak

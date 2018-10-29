@@ -12,7 +12,7 @@ const PostListing = ({ post, author, featured }) => (
             style={{
               position: 'absolute',
               width: '100%',
-              height: '100%'
+              height: '100%',
             }}
             fluid={post.frontmatter.image.childImageSharp.fluid}
           />
