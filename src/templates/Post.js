@@ -1,12 +1,11 @@
-import React, { Component, Suspense, lazy } from 'react'
+import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 
 import Seo from '../components/Seo/Seo'
 import SneakPeak from '../components/Post/SneakPeak'
 import Author from '../components/Post/Author'
 import Card, { CardBodyPost } from '../components/Card'
-
-const AsyncShare = lazy(() => import('../components/Post/Share'))
+import Share from '../components/Post/Share'
 
 class PostTemplate extends Component {
   render() {
@@ -34,9 +33,7 @@ class PostTemplate extends Component {
             <CardBodyPost dangerouslySetInnerHTML={{ __html: html }} />
           </Card>
           <Author />
-          <Suspense fallback={<div>Loading...</div>}>
-            <AsyncShare post={post} />
-          </Suspense>
+          <Share post={post} />
           <SneakPeak next={next} prev={prev} />
         </article>
       </>
