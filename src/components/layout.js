@@ -12,7 +12,7 @@ import { MobileNav, MobileNavItem } from './Nav/MobileNav/MobileNav'
 
 const Main = styled.main`
   margin: 0 auto;
-  max-width: 700px;
+  max-width: ${({ isHome }) => (isHome ? '650px' : '750px')};
   padding: 0px 1.0875rem 3rem;
   padding-top: 0px;
   box-sizing: content-box;
@@ -43,7 +43,7 @@ const Layout = ({ children, meta, location }) => (
       <>
         <Seo {...data} meta={meta || null} />
         <Header siteTitle={data.site.siteMetadata.title} location={location} />
-        <Main>{children}</Main>
+        <Main isHome={location.pathname === '/'}>{children}</Main>
         <MobileNav>
           <MobileNavItem
             linkTo="/about/"

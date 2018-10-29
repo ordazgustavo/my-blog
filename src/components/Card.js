@@ -19,7 +19,7 @@ const Card = styled.div`
 `
 
 export const CardImage = styled.div`
-  height: 220px;
+  height: 250px;
   position: relative;
   overflow: hidden;
 `
