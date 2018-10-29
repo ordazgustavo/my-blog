@@ -1,18 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense, lazy } from 'react'
 import { graphql } from 'gatsby'
-import Loadable from 'react-loadable'
 
 import Seo from '../components/Seo/Seo'
 import SneakPeak from '../components/Post/SneakPeak'
 import Author from '../components/Post/Author'
 import Card, { CardBodyPost } from '../components/Card'
 
-const AsyncShare = Loadable({
-  loader: () => import('../components/Post/Share'),
-  loading() {
-    return <div>Loading...</div>
-  },
-})
+const AsyncShare = lazy(() => import('../components/Post/Share'))
 
 class PostTemplate extends Component {
   render() {
@@ -37,12 +31,12 @@ class PostTemplate extends Component {
           </small>
           <h1>{frontmatter.title}</h1>
           <Card>
-            {/* <CardBody> */}
             <CardBodyPost dangerouslySetInnerHTML={{ __html: html }} />
-            {/* </CardBody> */}
           </Card>
           <Author />
-          <AsyncShare post={post} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <AsyncShare post={post} />
+          </Suspense>
           <SneakPeak next={next} prev={prev} />
         </article>
       </>
