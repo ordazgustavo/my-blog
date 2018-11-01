@@ -9,6 +9,7 @@ import { media } from '../utilities'
 import Header from './Header'
 import Seo from './Seo/Seo'
 import { MobileNav, MobileNavItem } from './Nav/MobileNav/MobileNav'
+import Footer from './Footer/Footer'
 
 const Main = styled.main`
   margin: 0 auto;
@@ -33,6 +34,8 @@ const Layout = ({ children, meta, location }) => (
             description
             authorName
             authorTwitterAccount
+            authorWebsite
+            github
             image
           }
         }
@@ -59,6 +62,7 @@ const Layout = ({ children, meta, location }) => (
             title="Contacto"
           />
         </MobileNav>
+        <Footer {...data} />
       </>
     )}
   </StaticQuery>

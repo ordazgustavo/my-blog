@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
-import { media, colors } from '../../utilities'
+import { media } from '../../utilities'
 
 const MainNav = styled.nav`
   display: flex;
@@ -15,15 +15,6 @@ const MainNav = styled.nav`
     list-style: none;
     li {
       margin: 0 10px;
-      a {
-        cursor: pointer;
-        text-decoration: none;
-        color: ${colors.greenSheen};
-        transition: color 0.3s ease-in;
-        &:hover {
-          color: ${colors.tealBlue};
-        }
-      }
     }
   }
 `
