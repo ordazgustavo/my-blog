@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { media, colors } from '../../../utilities'
 
 const MobileNav = styled.nav`
-  position: sticky;
+  position: fixed;
   display: flex;
   justify-content: space-around;
   align-items: center;

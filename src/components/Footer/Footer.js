@@ -10,6 +10,8 @@ const FooterWrapper = styled.div`
   background-color: ${colors.maastrichtBlue};
   color: ${colors.azureishWhite};
   font-size: 0.8rem;
+  position: sticky;
+  margin-bottom: 62px;
 `
 
 const FooterContainer = styled.div`
