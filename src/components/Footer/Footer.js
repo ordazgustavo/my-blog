@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { GoMarkGithub } from 'react-icons/go'
 import { FaTwitter } from 'react-icons/fa'
 
-import { colors } from '../../utilities'
+import { colors, media } from '../../utilities'
 import { Icons, IconNav } from '../Nav/Nav'
 
 const FooterWrapper = styled.div`
@@ -12,6 +12,9 @@ const FooterWrapper = styled.div`
   font-size: 0.8rem;
   position: sticky;
   margin-bottom: 62px;
+  ${media.tablet`
+    margin-bottom: unset;
+  `};
 `
 
 const FooterContainer = styled.div`
