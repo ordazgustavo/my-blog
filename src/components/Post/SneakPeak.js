@@ -15,16 +15,26 @@ const PrevNextLink = styled(Link)`
   box-shadow: none;
   border-bottom: 0;
   font-weight: bold;
+  &.next {
+    text-align: right;
+  }
   h4 {
     margin-top: 0;
     margin-bottom: 0;
-    font-weight: normal;
-    line-height: 1;
+    line-height: 2;
   }
-  span {
-    margin-left: -1rem;
-    margin-right: -1rem;
-  }
+`
+
+const Prev = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: -1rem;
+`
+
+const Next = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: -1rem;
 `
 
 const SneakPeak = ({ next, prev }) => {
@@ -39,28 +49,33 @@ const SneakPeak = ({ next, prev }) => {
       {prevSlug && (
         <PrevNextLink to={prevSlug}>
           <h4>Anterior</h4>
-          <span>
+          <Prev>
             <MdArrowBack />
-            {prevTitle}
-          </span>
+            <span>{prevTitle}</span>
+          </Prev>
         </PrevNextLink>
       )}
       {nextSlug && (
-        <PrevNextLink to={nextSlug}>
-          <h4 style={{ textAlign: 'right' }}>Siguente</h4>
-          <span>
-            {nextTitle}
+        <PrevNextLink className="next" to={nextSlug}>
+          <h4>Siguente</h4>
+          <Next>
+            <span>{nextTitle}</span>
             <MdArrowForward />
-          </span>
+          </Next>
         </PrevNextLink>
       )}
     </Wrapper>
   )
 }
 
+SneakPeak.defaultProps = {
+  prev: {},
+  next: {},
+}
+
 SneakPeak.propTypes = {
-  next: PropTypes.object,
-  prev: PropTypes.object,
+  prev: PropTypes.objectOf(PropTypes.any),
+  next: PropTypes.objectOf(PropTypes.any),
 }
 
 export default SneakPeak
