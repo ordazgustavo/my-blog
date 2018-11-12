@@ -98,7 +98,7 @@ $ git commit -am "Commit message"
 ```
 
 El flag `-am` esta haciendo dos cosas:
-1. El `a` agrega al stage los cambios
+1. `a` agrega al stage los cambios
 2. `m` te permite modificar el mensaje del commit
 
 **Nota:** esta abreviatura no te permite agregar los archivos nuevos conocidos como **_untracked_** al _stage_, para eso debes hacer un `git add path/to/file/` de manera explicita.
