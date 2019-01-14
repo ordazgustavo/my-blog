@@ -16,4 +16,12 @@ Para este año me propongo aprender nuevas cosas y mejorar en lo que ya sé hace
 
 <blockquote class="twitter-tweet" data-lang="es"><p lang="en" dir="ltr">Where&#39;s the TypeScript online course I should take?<br><br>(The docs assume I know some other type system as reference.)</p>&mdash; Ryan Florence (@ryanflorence) <a href="https://twitter.com/ryanflorence/status/1081285797804789760?ref_src=twsrc%5Etfw">4 de enero de 2019</a></blockquote>
 
+- Emprender nuevos proyectos y retomar los olvidados.
+- Mejorar el diseño de mi [página web](https://ordazgustavo.com)
+- Publicar como mínimo un articulo cada semana en este blog.
  - Aprender un nuevo lenguaje de programación, a finales del año pasado me propuse aprender Swift, estuve practicando un poco con el curso abierto de la Universidad de Stanford, pero nunca lo concluí y tampoco seguí practicando, por lo que este año pienso retomarlo. Si tienes acceso a una mac, te recomiendo aprender este lenguaje.
+
+Estos son algunos de los objetivos que me he propuesto para este año, no soy una persona que cree que en frases como "año nuevo, vida nueva", simplemente pienso que establecer objetivos claros te ayudaran a mantenerte concentrado en lo que es mas importante y no desviarte y terminar viendo videos de gatitos a las 2am...
+
+> Es durante nuestros momentos más oscuros que debemos enfocarnos para ver la luz.
+> --- Aristoteles
