@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import { MdArrowBack, MdArrowForward } from 'react-icons/md'
@@ -71,11 +70,6 @@ const SneakPeak = ({ next, prev }) => {
 SneakPeak.defaultProps = {
   prev: {},
   next: {},
-}
-
-SneakPeak.propTypes = {
-  prev: PropTypes.objectOf(PropTypes.any),
-  next: PropTypes.objectOf(PropTypes.any),
 }
 
 export default SneakPeak

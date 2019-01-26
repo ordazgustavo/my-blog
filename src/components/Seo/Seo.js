@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 const Seo = ({ site, meta }) => {
@@ -21,7 +20,7 @@ const Seo = ({ site, meta }) => {
     .authorTwitterAccount
 
   const title = postTitle ? `${postTitle} - ${siteTitle}` : siteTitle
-  const excerpt = postExcerpt ? postExcerpt : siteDescription
+  const excerpt = postExcerpt || siteDescription
   const image = postImage ? siteUrl + postImage : siteUrl + siteImage
   const url = postSlug ? siteUrl + postSlug : siteUrl
 
@@ -58,10 +57,6 @@ const Seo = ({ site, meta }) => {
       />
     </Helmet>
   )
-}
-
-Seo.propTypes = {
-  data: PropTypes.object,
 }
 
 export default Seo

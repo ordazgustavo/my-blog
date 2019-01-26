@@ -10,7 +10,6 @@ const FooterWrapper = styled.div`
   background-color: ${colors.maastrichtBlue};
   color: ${colors.azureishWhite};
   font-size: 0.8rem;
-  position: sticky;
   margin-bottom: 62px;
   ${media.tablet`
     margin-bottom: unset;
@@ -33,11 +32,17 @@ const FooterContainer = styled.div`
   }
 `
 
+function getCurrentYear() {
+  return new Date().getFullYear()
+}
+
 function Footer({ site }) {
   return (
     <FooterWrapper>
       <FooterContainer>
-        <div>&copy; 2018 {site.siteMetadata.authorName}.</div>
+        <div>
+          &copy; {getCurrentYear()} {site.siteMetadata.authorName}.
+        </div>
         <Icons>
           <IconNav to={site.siteMetadata.github} title="GitHub">
             <GoMarkGithub />

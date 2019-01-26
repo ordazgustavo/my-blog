@@ -1,6 +1,5 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import PropTypes from 'prop-types'
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -116,10 +115,6 @@ const Share = props => {
       )}
     />
   )
-}
-
-Share.propTypes = {
-  post: PropTypes.object.isRequired,
 }
 
 export default Share
