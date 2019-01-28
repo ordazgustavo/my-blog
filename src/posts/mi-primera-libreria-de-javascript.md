@@ -31,7 +31,7 @@ npm i here-maps-react
 
 ### \<HEREMap />
 
-```js
+```jsx
 import React from 'react'
 import HEREMap from 'here-maps-react'
 
@@ -51,7 +51,7 @@ class Map extends React.Component {
 
 ### \<Marker />
 
-```js
+```jsx
 import React from 'react'
 import HEREMap, { Marker } from 'here-maps-react'
 
@@ -73,7 +73,7 @@ class Map extends React.Component {
 
 ### \<RouteLine />
 
-```js
+```jsx
 import React from 'react'
 import HEREMap, { Marker, RouteLine } from 'here-maps-react'
 
