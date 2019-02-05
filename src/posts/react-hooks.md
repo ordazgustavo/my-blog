@@ -34,10 +34,10 @@ Además del mejor manejo del lifecycle de un componente, existen otros hooks que
   
 ### useState  
   
-Este Hook que "reemplaza" el `this.setState(...)` de un class component, es una función que recibe un parámetro y retorna un arreglo con el valor y una función para actualizar ese valor, conocida como `dispatcher`.
+Este Hook "reemplaza" el `this.setState(...)` de un class component, es una función que recibe un parámetro y retorna un arreglo con el valor y una función para actualizar ese valor, conocida como `dispatcher`.
 
 ```jsx
-import React { useState } from 'react'
+import React, { useState } from 'react'
 
 function MyComponent() {
         // v--- el estado con valor inicial `0`
