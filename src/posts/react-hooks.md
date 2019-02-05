@@ -12,7 +12,7 @@ Tengo tiempo con ganas de escribir sobre esta actualización de React pero, pens
   
 ## ¿Que son los React Hooks?  
   
-Son un conjunto de funciones que por React a disposición para manejar un local state y/o side effects en un componente, en otras palabras, son una **alternativa** a `setState` y los lifecycle hooks como `componentDidMount`, `componentDidUpdate`, etc. Ejemplos en unos instantes.  
+Son un conjunto de funciones que pone React a disposición para manejar un local state y/o side effects en un componente, en otras palabras, son una **alternativa** a `setState` y los lifecycle hooks como `componentDidMount`, `componentDidUpdate`, etc. Ejemplos en unos instantes.  
   
 ## ¿Por qué surge este nuevo API?  
   
