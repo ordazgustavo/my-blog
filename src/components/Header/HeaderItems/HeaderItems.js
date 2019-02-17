@@ -26,9 +26,7 @@ const HeaderContainer = styled.div`
 
 const HeaderLogo = styled.h1`
   margin: 0 15px 0 0;
-  ${media.tablet`
-    flex-grow: 0;
-  `} a {
+  a {
     text-decoration: 'none';
   }
   span {
@@ -36,6 +34,9 @@ const HeaderLogo = styled.h1`
     transform: translateY(-999px);
     position: absolute;
   }
+  ${media.tablet`
+    flex-grow: 0;
+  `};
 `
 
 export { HeaderWrapper, HeaderContainer, HeaderLogo }
