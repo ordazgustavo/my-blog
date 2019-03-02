@@ -63,7 +63,7 @@ exports.createPages = ({ graphql, actions }) => {
           /posts/.test(item.node.fileAbsolutePath),
         )
         posts.forEach(({ node }, index) => {
-          const slug = node.fields.slug
+          const { slug } = node.fields
           const next = index === 0 ? null : posts[index - 1].node
           const prev = index === posts.length - 1 ? null : posts[index + 1].node
 
@@ -83,7 +83,7 @@ exports.createPages = ({ graphql, actions }) => {
           /pages/.test(item.node.fileAbsolutePath),
         )
         pages.forEach(({ node }) => {
-          const slug = node.fields.slug
+          const { slug } = node.fields
 
           createPage({
             path: slug,

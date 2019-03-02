@@ -17,28 +17,30 @@ const Wrapper = styled.div`
   }
 `
 
+const query = graphql`
+  query AuthorDataQuery {
+    site {
+      siteMetadata {
+        authorName
+        authorTwitterAccount
+      }
+    }
+    authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {
+      html
+    }
+    profilefoto: imageSharp(
+      fluid: { originalName: { regex: "/profile-square.jpg/" } }
+    ) {
+      fluid(maxWidth: 350) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+`
+
 const Author = () => (
   <StaticQuery
-    query={graphql`
-      query AuthorDataQuery {
-        site {
-          siteMetadata {
-            authorName
-            authorTwitterAccount
-          }
-        }
-        authornote: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {
-          html
-        }
-        profilefoto: imageSharp(
-          fluid: { originalName: { regex: "/profile-square.jpg/" } }
-        ) {
-          fluid(maxWidth: 350) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    `}
+    query={query}
     render={data => (
       <Wrapper>
         <div>

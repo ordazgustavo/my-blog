@@ -22,26 +22,26 @@ const Main = styled.main`
   `};
 `
 
-const Layout = ({ children, meta, location }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            lang
-            siteUrl
-            title
-            description
-            authorName
-            authorTwitterAccount
-            authorWebsite
-            github
-            image
-          }
-        }
+const query = graphql`
+  query SiteTitleQuery {
+    site {
+      siteMetadata {
+        lang
+        siteUrl
+        title
+        description
+        authorName
+        authorTwitterAccount
+        authorWebsite
+        github
+        image
       }
-    `}
-  >
+    }
+  }
+`
+
+const Layout = ({ children, meta, location }) => (
+  <StaticQuery query={query}>
     {data => (
       <>
         <Seo {...data} meta={meta || null} />
