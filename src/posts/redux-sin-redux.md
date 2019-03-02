@@ -206,3 +206,5 @@ Puedes encontrar el código original en el repo de [Redux](https://github.com/re
 ---
 
 Como puedes ver, estoy combinando `createContext`, `useReducer` y `useContext` para crear una interface que se parece mucho a Redux sin instalar ninguna dependencia, pero que, a su vez, cuando requieras cosas mas avanzadas como la inclusion de middlewares, sea fácil adaptar Redux al codebase existente.
+
+Puedes encontrar un ejemplo funcional en este [codesandbox](https://codesandbox.io/s/0pw6r3komn).
