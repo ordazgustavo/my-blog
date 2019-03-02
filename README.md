@@ -1,26 +1,11 @@
-# gatsby-starter-default
-The default Gatsby starter.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0739373d-fb8b-41e8-9221-51e9c0d29bfc/deploy-status)](https://app.netlify.com/sites/blogordazgustavo/deploys)
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
+# Personal Blog
 
-## Install
+I think we all have something to say, instinctively we want to share the things
+we learn on a daily basis, I want this to be a space where I share my
+experiences and thus be able to help people who are in a similar situation.
 
-Make sure that you have the Gatsby CLI program installed:
-```sh
-npm install --global gatsby-cli
-```
+# Contributing
 
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
-```
-
-Then you can run it by:
-```sh
-cd gatsby-example-site
-gatsby develop
-```
-
-## Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
+If you spot a typo or any kind of error I'll be glad to accept a PR!
