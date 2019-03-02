@@ -101,7 +101,7 @@ class Map extends React.Component {
 
 ## ¿Puedo contribuir?
 
-Estaré feliz de aceptar cualquier tipo de Pull Request, dede un error ortográfico, hasta un nuevo feature.
+Estaré feliz de aceptar cualquier tipo de Pull Request, desde un error ortográfico, hasta un nuevo feature.
 
 ## Agradecimientos
 
