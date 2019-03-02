@@ -11,9 +11,9 @@ module.exports = {
   siteMetadata: {
     lang: 'es',
     siteUrl,
-    title: 'Blog personal de Gustavo Ordaz',
+    title: 'Blog de Gustavo Ordaz',
     description:
-      'Suelo escribir sobre JavaScript, React y otras tecnologias web del momento 🔥',
+      'Suelo escribir sobre JavaScript, React y otras tecnologías web del momento 🔥',
     github: 'https://github.com/ordazgustavo/my-blog',
     authorName: 'Gustavo Ordaz',
     authorTwitterAccount: 'ordazsgustavo',

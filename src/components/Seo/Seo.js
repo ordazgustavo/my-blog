@@ -13,11 +13,10 @@ const Seo = ({ site, meta }) => {
   const siteTitle = ((site || {}).siteMetadata || {}).title
   const siteDescription = ((site || {}).siteMetadata || {}).description
   const siteImage = ((site || {}).siteMetadata || {}).image
-  const siteUrl = ((site || {}).siteMetadata || {}).siteUrl
+  const { siteUrl } = (site || {}).siteMetadata || {}
   const siteLang = ((site || {}).siteMetadata || {}).lang
 
-  const authorTwitterAccount = ((site || {}).siteMetadata || {})
-    .authorTwitterAccount
+  const { authorTwitterAccount } = (site || {}).siteMetadata || {}
 
   const title = postTitle ? `${postTitle} - ${siteTitle}` : siteTitle
   const excerpt = postExcerpt || siteDescription
@@ -30,32 +29,62 @@ const Seo = ({ site, meta }) => {
         lang: siteLang || 'es',
         prefix: 'og: http://ogp.me/ns#',
       }}
-    >
-      {/* General tags */}
-      <title>{title}</title>
-      <meta name="description" content={excerpt} />
-      {/* OpenGraph tags */}
-      <meta property="og:url" content={url} />
-      <meta property="og:title" content={title} />
-      <meta property="og:site_name" content={siteTitle} />
-      <meta property="og:description" content={excerpt} />
-      <meta property="og:image" content={image} />
-      <meta property="og:type" content="website" />
-      {/* <meta property="fb:app_id" content={facebook.appId} /> */}
-      {/* Twitter Card tags */}
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={excerpt} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content={image} />
-      <meta
-        name="twitter:site"
-        content={authorTwitterAccount ? `@${authorTwitterAccount}` : ''}
-      />
-      <meta
-        name="twitter:creator"
-        content={authorTwitterAccount ? `@${authorTwitterAccount}` : ''}
-      />
-    </Helmet>
+      title={title}
+      meta={[
+        {
+          name: 'description',
+          content: excerpt,
+        },
+        {
+          name: 'og:url',
+          content: url,
+        },
+        {
+          name: 'og:title',
+          content: title,
+        },
+        {
+          name: 'og:site_name',
+          content: siteTitle,
+        },
+        {
+          name: 'og:description',
+          content: excerpt,
+        },
+        {
+          name: 'og:image',
+          content: image,
+        },
+        {
+          name: 'og:type',
+          content: 'website',
+        },
+        {
+          name: 'twitter:title',
+          content: title,
+        },
+        {
+          name: 'twitter:description',
+          content: excerpt,
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          name: 'twitter:image',
+          content: image,
+        },
+        {
+          name: 'twitter:site',
+          content: authorTwitterAccount ? `@${authorTwitterAccount}` : '',
+        },
+        {
+          name: 'twitter:creator',
+          content: authorTwitterAccount ? `@${authorTwitterAccount}` : '',
+        },
+      ]}
+    />
   )
 }
 
